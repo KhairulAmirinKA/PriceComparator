@@ -31,13 +31,137 @@
             android:textColor="@color/black"
             android:textSize="24sp" />
 
-
-
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"></LinearLayout>
+        android:layout_marginHorizontal="64dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/lightGrey"
+            android:layout_marginTop="32dp"
+            android:padding="10dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1. Product Name: "
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="10dp">
+
+                <EditText
+                    android:id="@+id/ETProductName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:background="@android:color/transparent"
+                    android:hint="Enter product name"
+                    android:padding="10dp">
+
+                </EditText>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/lightGrey"
+            android:layout_marginTop="24dp"
+            android:padding="10dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2. Price: "
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="10dp">
+
+                <EditText
+                    android:id="@+id/ETProductPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:background="@android:color/transparent"
+                    android:hint="Enter product price in RM"
+                    android:inputType="numberDecimal"
+                    android:padding="10dp">
+
+                </EditText>
+            </androidx.cardview.widget.CardView>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/lightGrey"
+            android:layout_marginTop="24dp"
+            android:padding="10dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3. Quantity: "
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="10dp">
+
+                <EditText
+                    android:id="@+id/ETProductQuantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:background="@android:color/transparent"
+                    android:hint="Enter product quantity"
+                    android:inputType="numberDecimal"
+                    android:padding="10dp">
+
+                </EditText>
+            </androidx.cardview.widget.CardView>
+
+
+
+        </LinearLayout>
+
+        <Button
+            android:layout_marginTop="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            android:id="@+id/BtnAddDetails"
+            android:backgroundTint="#EE8F00"/>
+
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-public class EnterItemDetails extends AppCompatActivity {
+public class ProductItemDetails extends AppCompatActivity {
 
     ImageView IVBack;
     EditText ETProductName, ETProductPrice, ETProductQuantity;
@@ -19,13 +19,15 @@ public class EnterItemDetails extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_enter_item_details);
+        setContentView(R.layout.activity_product_item_details);
 
+        //find view by id
+        initViews();
 
         IVBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent  = new Intent(EnterItemDetails.this, MainActivity.class);
+                Intent intent  = new Intent(ProductItemDetails.this, MainActivity.class);
                 startActivity(intent);
             }
         });

@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.util.Locale;
 
 import RoomDB.ProductItem;
 
@@ -39,6 +40,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         if (position==0){
             holder.LLProductItemParent.setBackgroundResource(R.color.green);
         }
+
+        ProductItem currentProduct = productItemList.get(position);
+
+        holder.TVProductName.setText(productItemList.get(position).getProductName());
+        holder.TVProductPrice.setText(String.format(Locale.US,"%.2f", currentProduct.getProductPrice()));
+        holder.TVProductQuantity.setText(String.format(Locale.US, "%.4f", currentProduct.getProductQuantity()));
     }
 
     @Override
@@ -68,6 +75,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             TVProductPrice = itemView.findViewById(R.id.TVProductPrice);
             TVProductQuantity= itemView.findViewById(R.id.TVProductQuantity);
             TVProductPricePerQuantity = itemView.findViewById(R.id.TVProductPricePerQuantity);
+
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.khairul.pricecomparator;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,12 +12,16 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import RoomDB.ProductItem;
+import RoomDB.ProductViewModel;
+
 public class ProductItemDetails extends AppCompatActivity {
 
     ImageView IVBack;
     EditText ETProductName, ETProductPrice, ETProductQuantity;
-
     Button BtnAddDetails;
+
+    ProductViewModel productViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +57,12 @@ public class ProductItemDetails extends AppCompatActivity {
                     productPrice = Double.parseDouble(ETProductPrice.getText().toString());
                     productQuantity = Double.parseDouble(ETProductQuantity.getText().toString());
 
+                    //view model
+                    productViewModel = new ViewModelProvider(ProductItemDetails.this).get(ProductViewModel.class);
+
+                    ProductItem currentProduct = new ProductItem(productName, productPrice, productQuantity);
+                    productViewModel.insertProduct(currentProduct);
+
 
                     Toast.makeText(ProductItemDetails.this, "details saved", Toast.LENGTH_SHORT).show();
 
@@ -79,4 +90,5 @@ public class ProductItemDetails extends AppCompatActivity {
 
         BtnAddDetails = findViewById(R.id.BtnAddDetails);
     }
+
 }

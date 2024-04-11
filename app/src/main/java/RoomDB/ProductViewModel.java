@@ -12,21 +12,22 @@ import java.util.concurrent.Executors;
 
 public class ProductViewModel extends AndroidViewModel {
 
-    private ProductDao productDao;
-    private ExecutorService executorService;
+    private ProductRepository productRepository;
+    private  LiveData<List<ProductItem>> allProducts;
+
 
     public ProductViewModel(@NonNull Application application) {
         super(application);
 
-        productDao = ProductDatabase.getInstance(application).productDao();
-        executorService = Executors.newSingleThreadExecutor();
+        productRepository = new ProductRepository(application);
+        allProducts = productRepository.getAllProducts();
     }
 
-    LiveData<List<ProductItem>> getAllProducts(){
-        return productDao.getAllProducts();
+    public LiveData<List<ProductItem>> getAllProducts() {
+        return allProducts;
     }
 
-
-
-
+    public void insertProduct(ProductItem productItem){
+        productRepository.insertProduct(productItem);
+    }
 }

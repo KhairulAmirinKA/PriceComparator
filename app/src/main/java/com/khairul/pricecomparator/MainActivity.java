@@ -43,16 +43,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //recycler view
-        productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
-
-//        productViewModel.getApplication().
-
         List<ProductItem> list = new ArrayList<>();
         list.add(new ProductItem("sun", 8.99,100));
         list.add(new ProductItem("sun2", 81.99,100));
 
 
-        productAdapter  = new ProductAdapter(list);
+        productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
+//        productViewModel.getAllProducts().observe(this, posts->{
+//
+//            productAdapter.setData(posts);
+//        });
+        //productViewModel.getAllProducts().observe();
+
+
+
+
+        //productAdapter  = new ProductAdapter(list);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         RVProductItems.setLayoutManager(layoutManager);
         RVProductItems.setAdapter(productAdapter);

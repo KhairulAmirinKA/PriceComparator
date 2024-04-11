@@ -1,7 +1,12 @@
-package com.khairul.pricecomparator;
+package RoomDB;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class ProductItem {
 
+    @PrimaryKey
     private String productName;
     private double productPrice;
     private double productQuantity;

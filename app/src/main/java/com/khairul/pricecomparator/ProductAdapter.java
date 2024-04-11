@@ -1,7 +1,6 @@
 package com.khairul.pricecomparator;
 
 
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import RoomDB.ProductItem;
+
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
 
-    private final List<ProductItem> productItemList;
+    private List<ProductItem> productItemList;
 
     public ProductAdapter(List<ProductItem> productItemList) {
         this.productItemList = productItemList;
@@ -43,6 +44,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     @Override
     public int getItemCount() {
         return productItemList.size();
+    }
+
+    public void setData(List<ProductItem> productItemList){
+        this.productItemList = productItemList;
+        notifyDataSetChanged();
     }
 
 

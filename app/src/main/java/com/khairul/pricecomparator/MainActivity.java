@@ -2,6 +2,7 @@ package com.khairul.pricecomparator;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,6 +13,9 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+import RoomDB.ProductItem;
+import RoomDB.ProductViewModel;
+
 public class MainActivity extends AppCompatActivity {
 
     private ConstraintLayout CLNewRecord;
@@ -19,11 +23,14 @@ public class MainActivity extends AppCompatActivity {
 
     private ProductAdapter productAdapter;
 
+    private ProductViewModel productViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //find view by id
         initViews();
 
         //click make new record
@@ -34,6 +41,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //recycler view
+        productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
+
+//        productViewModel.getApplication().
 
         List<ProductItem> list = new ArrayList<>();
         list.add(new ProductItem("sun", 8.99,100));

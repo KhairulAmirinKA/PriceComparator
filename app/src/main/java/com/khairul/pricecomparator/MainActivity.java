@@ -2,6 +2,7 @@ package com.khairul.pricecomparator;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,26 +43,31 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //recycler view
+        // dummy data recycler view
         List<ProductItem> list = new ArrayList<>();
-        list.add(new ProductItem("sun", 8.99,100));
-        list.add(new ProductItem("sun2", 81.99,100));
+//        list.add(new ProductItem("sun", 8.99,100));
+//        list.add(new ProductItem("sun2", 81.99,100));
 
-
-        productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
-//        productViewModel.getAllProducts().observe(this, posts->{
-//
-//            productAdapter.setData(posts);
-//        });
-        //productViewModel.getAllProducts().observe();
-
-
-
-
-        //productAdapter  = new ProductAdapter(list);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        //setup recycler view
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         RVProductItems.setLayoutManager(layoutManager);
-        RVProductItems.setAdapter(productAdapter);
+
+        //get data from room db
+        productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
+
+        //populate in recycler view
+        productViewModel.getAllProducts().observe(this, new Observer<List<ProductItem>>() {
+            @Override
+            public void onChanged(List<ProductItem> productItems) {
+
+                productAdapter = new ProductAdapter(productItems);
+                RVProductItems.setAdapter(productAdapter);
+            }
+        });
+
+
+
+
 
 
     }

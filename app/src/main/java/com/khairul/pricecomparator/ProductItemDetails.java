@@ -49,6 +49,7 @@ public class ProductItemDetails extends AppCompatActivity {
                 String productName = ETProductName.getText().toString();
                 double productPrice;
                 double productQuantity;
+                double pricePerQuantity=0;
 
                 if (!TextUtils.isEmpty(productName) &&
                         !TextUtils.isEmpty(ETProductPrice.getText().toString())
@@ -57,10 +58,14 @@ public class ProductItemDetails extends AppCompatActivity {
                     productPrice = Double.parseDouble(ETProductPrice.getText().toString());
                     productQuantity = Double.parseDouble(ETProductQuantity.getText().toString());
 
+                    //calc price per quantity
+                    pricePerQuantity = productPrice / productQuantity;
+
+                    ProductItem currentProduct = new ProductItem(productName, productPrice, productQuantity, pricePerQuantity);
+
                     //view model
                     productViewModel = new ViewModelProvider(ProductItemDetails.this).get(ProductViewModel.class);
 
-                    ProductItem currentProduct = new ProductItem(productName, productPrice, productQuantity);
                     productViewModel.insertProduct(currentProduct);
 
 

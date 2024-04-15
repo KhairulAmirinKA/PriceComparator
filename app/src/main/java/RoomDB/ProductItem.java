@@ -14,11 +14,19 @@ public class ProductItem {
 
     private double pricePerQuantity;
 
-    public ProductItem(String productName, double productPrice, double productQuantity) {
+    public ProductItem(String productName, double productPrice, double productQuantity, double pricePerQuantity) {
         this.productName = productName;
         this.productPrice = productPrice;
         this.productQuantity = productQuantity;
+        this.pricePerQuantity = pricePerQuantity;
     }
+
+//    public ProductItem(String productName, double productPrice, double productQuantity) {
+//        this.productName = productName;
+//        this.productPrice = productPrice;
+//        this.productQuantity = productQuantity;
+//        this.pricePerQuantity = productPrice / productQuantity;
+//    }
 
     public String getProductName() {
         return productName;

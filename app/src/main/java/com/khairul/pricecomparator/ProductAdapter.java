@@ -2,6 +2,7 @@ package com.khairul.pricecomparator;
 
 
 import android.annotation.SuppressLint;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +25,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         this.productItemList = productItemList;
     }
 
-//    public ProductAdapter() {
-//    }
 
     @NonNull
     @Override
@@ -53,6 +52,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         holder.TVProductPrice.setText(String.format(Locale.US,"%.2f", currentProduct.getProductPrice()));
         holder.TVProductQuantity.setText(String.format(Locale.US, "%.4f", currentProduct.getProductQuantity()));
         holder.TVProductPricePerQuantity.setText(String.format(Locale.US, "%.4f", currentProduct.getPricePerQuantity()));
+
     }
 
     @Override
@@ -62,6 +62,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     @SuppressLint("NotifyDataSetChanged")
     public void updateData(List<ProductItem> productItemList){
+
         this.productItemList.clear();
         this.productItemList.addAll(productItemList);
         notifyDataSetChanged();
@@ -73,6 +74,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     public static class ViewHolder extends RecyclerView.ViewHolder{
         LinearLayout LLProductItemParent;
         TextView TVProductName, TVProductPrice, TVProductQuantity, TVProductPricePerQuantity;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

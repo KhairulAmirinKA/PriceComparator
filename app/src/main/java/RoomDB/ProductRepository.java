@@ -43,5 +43,10 @@ public class ProductRepository {
         });
     }
 
+    //sort products
+    public LiveData<List<ProductItem>> sortProducts(){
+        return productDao.sortProducts();
+    }
+
 
 }

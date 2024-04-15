@@ -23,4 +23,7 @@ public interface ProductDao {
 
     @Query("SELECT * FROM ProductItem")
     LiveData<List<ProductItem>> getAllProducts();
+
+    @Query("SELECT * FROM ProductItem ORDER BY pricePerQuantity")
+    LiveData<List<ProductItem>> sortProducts();
 }

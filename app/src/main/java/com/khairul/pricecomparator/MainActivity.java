@@ -24,7 +24,7 @@ import RoomDB.ProductViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ConstraintLayout CLNewRecord, CLClearRecords;
+    private ConstraintLayout CLNewRecord, CLSortRecords, CLClearRecords;
     private RecyclerView RVProductItems;
 
     private ProductAdapter productAdapter;
@@ -48,25 +48,39 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // dummy data recycler view
-        List<ProductItem> list = new ArrayList<>();
-//        list.add(new ProductItem("sun", 8.99,100));
-//        list.add(new ProductItem("sun2", 81.99,100));
 
         //setup recycler view
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         RVProductItems.setLayoutManager(layoutManager);
 
-        //get data from room db
+        //get data from room db. use ViewModel
         productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
 
-        //populate in recycler view
+        //populate in recycler view.
         productViewModel.getAllProducts().observe(this, new Observer<List<ProductItem>>() {
             @Override
             public void onChanged(List<ProductItem> productItems) {
 
                 productAdapter = new ProductAdapter(productItems);
                 RVProductItems.setAdapter(productAdapter);
+            }
+        });
+
+        //click SORT button
+        CLSortRecords.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //display sorted products
+                productViewModel.sortProducts().observe(MainActivity.this, new Observer<List<ProductItem>>() {
+                    @Override
+                    public void onChanged(List<ProductItem> sortedProductItems) {
+
+                        productAdapter.updateData(sortedProductItems);
+                    }
+                });
+                Toast.makeText(MainActivity.this, "Products sorted", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -126,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initViews() {
         CLNewRecord = findViewById(R.id.CLNewRecord);
+        CLSortRecords = findViewById(R.id.CLSortRecords);
         CLClearRecords = findViewById(R.id.CLClearRecords);
 
         RVProductItems = findViewById(R.id.RVProductItems);

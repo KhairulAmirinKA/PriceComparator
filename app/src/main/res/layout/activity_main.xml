@@ -125,7 +125,8 @@
             android:layout_width="78dp"
             android:layout_height="103dp"
             android:layout_gravity="end"
-            android:src="@drawable/ic_plus_circle" />
+            android:src="@drawable/ic_plus_circle"
+            android:visibility="gone"/>
 
     </LinearLayout>
 </LinearLayout>

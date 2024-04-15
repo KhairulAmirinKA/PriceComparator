@@ -12,7 +12,7 @@ import java.util.concurrent.Executors;
 
 public class ProductViewModel extends AndroidViewModel {
 
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
     private  LiveData<List<ProductItem>> allProducts;
 
 
@@ -36,5 +36,11 @@ public class ProductViewModel extends AndroidViewModel {
     //delete all data
     public void deleteAll(){
         productRepository.deleteAll();
+    }
+
+    //sort products
+    public LiveData<List<ProductItem>> sortProducts(){
+        return productRepository.sortProducts();
+
     }
 }

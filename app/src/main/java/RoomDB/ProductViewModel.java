@@ -23,11 +23,18 @@ public class ProductViewModel extends AndroidViewModel {
         allProducts = productRepository.getAllProducts();
     }
 
+    //get all data
     public LiveData<List<ProductItem>> getAllProducts() {
         return allProducts;
     }
 
+    //insert new data
     public void insertProduct(ProductItem productItem){
         productRepository.insertProduct(productItem);
+    }
+
+    //delete all data
+    public void deleteAll(){
+        productRepository.deleteAll();
     }
 }

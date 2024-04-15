@@ -1,5 +1,6 @@
 package com.khairul.pricecomparator;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.Observer;
@@ -7,9 +8,13 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +24,7 @@ import RoomDB.ProductViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ConstraintLayout CLNewRecord;
+    private ConstraintLayout CLNewRecord, CLClearRecords;
     private RecyclerView RVProductItems;
 
     private ProductAdapter productAdapter;
@@ -38,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         CLNewRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent  = new Intent(MainActivity.this, ProductItemDetails.class);
+                Intent intent = new Intent(MainActivity.this, ProductItemDetails.class);
                 startActivity(intent);
             }
         });
@@ -65,15 +70,64 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //click clear button
+        CLClearRecords.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
+                builder.setTitle("Clear All Products");
+                builder.setMessage("Do you want to clear all the products?")
 
+                        //Yes button
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //delete from database
+                                productViewModel.deleteAll();
+
+                                Toast.makeText(MainActivity.this, "All products cleared", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+
+                        //No button
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+
+                AlertDialog dialog = builder.create();
+
+                //customize color
+                dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface dialogInterface) {
+
+                        //Yes button
+                        Button button = ((AlertDialog) dialogInterface).getButton(AlertDialog.BUTTON_POSITIVE);
+
+                        //set the button color to red
+                        if (button != null) {
+                            button.setTextColor(Color.RED);
+                        }
+                    }
+                });
+
+                dialog.show();
+
+            }
+        });
 
 
     }
 
-    private void initViews(){
+    private void initViews() {
         CLNewRecord = findViewById(R.id.CLNewRecord);
+        CLClearRecords = findViewById(R.id.CLClearRecords);
+
         RVProductItems = findViewById(R.id.RVProductItems);
     }
 }

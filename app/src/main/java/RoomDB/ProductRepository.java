@@ -18,10 +18,12 @@ public class ProductRepository {
         allProducts = productDao.getAllProducts();
     }
 
+    //get all product data
     public LiveData<List<ProductItem>> getAllProducts() {
         return allProducts;
     }
 
+    //insert Product into database
     void insertProduct(ProductItem productItem){
         ProductDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override
@@ -30,4 +32,16 @@ public class ProductRepository {
             }
         });
     }
+
+    //delete all
+    void deleteAll(){
+        ProductDatabase.databaseWriteExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                productDao.deleteAll();
+            }
+        });
+    }
+
+
 }
